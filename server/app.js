@@ -1,17 +1,18 @@
 const express = require('express');
 const {graphqlHTTP} = require('express-graphql');
 require ('dotenv').config();
+const mongoose = require('mongoose');
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = `mongodb+srv://${process.env.user}:${process.env.pw}@cluster0.xcqlp.mongodb.net/games?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.xcqlp.mongodb.net/campaign-tracker?retryWrites=true&w=majority`;
 
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-    console.log("MongoDB connected....")
-  const collection = client.db("games").collection("campaigns");
-  // perform actions on the collection object
-  client.close();
-});
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+    .then((result) => {
+        console.log("Connected to db via mongoose");
+    })
+    .catch(err => console.log(err));
 
 
 
