@@ -36,6 +36,13 @@ const characters = [
     gold: 34,
     creator: '2',
   },
+  {
+    id: '3',
+    name: 'Tesseract',
+    class: 'Cleric',
+    gold: 67,
+    creator: '2',
+  },
 ];
 
 const items = [
